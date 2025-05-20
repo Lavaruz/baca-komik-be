@@ -8,6 +8,7 @@ class Chapter extends Model {
   declare title: string;
   declare slug: string;
   declare pages: string; // Menyimpan JSON string dari array URLs
+  declare chapterNumber: number;
   declare releaseDate: Date;
 
   declare createdAt: CreationOptional<Date>;
@@ -51,6 +52,10 @@ Chapter.init(
       set(value) {
         this.setDataValue('pages', JSON.stringify(value));
       }
+    },
+    chapterNumber: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
     releaseDate: {
       type: DataTypes.DATE,

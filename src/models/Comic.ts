@@ -1,6 +1,8 @@
 import { DataTypes, Model, CreationOptional, HasManyAddAssociationMixin, HasManyHasAssociationMixin, HasManyRemoveAssociationsMixin, HasManyGetAssociationsMixin } from "sequelize";
 import { sequelize } from ".";
 import Chapter from "./Chapter";
+import Author from "./Author";
+import Genre from "./Genre";
 
 class Comic extends Model {
   declare id: CreationOptional<string>;
@@ -59,5 +61,21 @@ Comic.init(
     modelName: "Comic",
   }
 );
+
+/**
+ * M2M
+ * 1 komik bisa punya banyak author
+ * 1 author bisa punya banyak komik
+ */
+Comic.belongsToMany(Author, { through: 'ComicAuthors', as: 'authors' });
+Author.belongsToMany(Comic, { through: 'ComicAuthors', as: 'comics' });
+
+/**
+ * M2M
+ * Komik <-> Genre
+ */
+Comic.belongsToMany(Genre, { through: "ComicGenres", as: "genres" });
+Genre.belongsToMany(Comic, { through: "ComicGenres", as: "comics" });
+
 
 export default Comic;
