@@ -1,4 +1,4 @@
-import { DataTypes, Model, CreationOptional, HasManyAddAssociationMixin, HasManyHasAssociationMixin, HasManyRemoveAssociationsMixin, HasManyGetAssociationsMixin } from "sequelize";
+import { DataTypes, Model, CreationOptional, HasManyAddAssociationMixin, HasManyHasAssociationMixin, HasManyRemoveAssociationsMixin, HasManyGetAssociationsMixin, BelongsToManySetAssociationsMixin, HasManyCountAssociationsMixin } from "sequelize";
 import { sequelize } from ".";
 import Chapter from "./Chapter";
 import Author from "./Author";
@@ -20,6 +20,10 @@ class Comic extends Model {
   declare hasChapter: HasManyHasAssociationMixin<Chapter, number>
   declare removeChapter: HasManyRemoveAssociationsMixin<Chapter,number>
   declare getChapters: HasManyGetAssociationsMixin<Chapter>
+  declare countChapters: HasManyCountAssociationsMixin
+
+  declare setAuthors: BelongsToManySetAssociationsMixin<Author, number>
+  declare setGenres: BelongsToManySetAssociationsMixin<Genre, number>
 }
 
 Comic.init(

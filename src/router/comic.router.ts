@@ -2,18 +2,18 @@ import express from "express";
 import { decrypt } from "../config/crypto";    
 import { 
   GetAllComics, 
-  GetComicBySlug, 
-  GetComicChapterBySlug,
+  GetComicChapterById,
   UpdateComic,
   DeleteComic,
-  AddComic
+  AddComic,
+  GetComicById
 } from "../controllers/comic.controller";
 
 const comicRouter = express.Router();
 
 comicRouter.get("/", GetAllComics)
-comicRouter.get("/:slug", GetComicBySlug)
-comicRouter.get("/:slug/chapters", GetComicChapterBySlug)
+comicRouter.get("/:id", GetComicById)
+comicRouter.get("/:id/chapters", GetComicChapterById)
 
 comicRouter.post("/", AddComic)
 comicRouter.put("/:slug", UpdateComic)

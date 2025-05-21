@@ -5,6 +5,7 @@ class Genre extends Model {
   declare id: CreationOptional<string>;
   declare name: string;
   declare description: string;
+  declare image: string;
 }
 
 Genre.init(
@@ -20,7 +21,10 @@ Genre.init(
       allowNull: false,
     },
     description: {
-      type: DataTypes.STRING
+      type: DataTypes.TEXT
+    },
+    image: {
+      type: DataTypes.TEXT
     },
   },
   {

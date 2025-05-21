@@ -5,7 +5,7 @@ import { GetChapterBySlug, AddChapter, GetAllChapter } from "../controllers/chap
 const chapterRouter = express.Router();
 
 chapterRouter.get("/", GetAllChapter);
-chapterRouter.get("/:comicSlug/:chapterSlug", GetChapterBySlug);
+chapterRouter.get("/:id", GetChapterBySlug);
 chapterRouter.post("/:comicSlug", AddChapter);
 
 // POST /api/chapters/one-piece

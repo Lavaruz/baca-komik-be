@@ -1,8 +1,6 @@
 import express from "express";
-import fs from "fs"
 import path from "path";
 import multer from 'multer';
-import cookieParser from "cookie-parser"
 import cors from "cors"
 import * as dotenv from "dotenv";
 dotenv.config();
@@ -17,9 +15,8 @@ import chapterRouter from "./router/chapter.router";
 app.use(cors({
   origin: "*"
 }))
-app.use(multer({ storage, limits: { fileSize: 2 * 1024 * 1024 } }).any());
+app.use(multer({ storage, /* limits: { fileSize: 2 * 1024 * 1024 } */ }).any());
 app.use(express.json());
-app.use(cookieParser());
 app.enable("trust proxy");
 app.use(wwwRedirect);
 
